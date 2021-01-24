@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { ClaimComponent } from './claim/claim.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './_interceptor/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { ClaimComponent } from './claim/claim.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ {provide : HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
